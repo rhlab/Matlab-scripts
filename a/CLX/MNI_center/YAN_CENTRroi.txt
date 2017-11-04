@@ -1,0 +1,14 @@
+a=load_nii('resliced_aal.nii')
+ind=find(a.img==1)
+for i=1:length(ind);
+[x, y, z] = ind2sub(size(a.img), ind(i,1));
+k(i,1)=x;
+k(i,2)=y;
+k(i,3)=z;
+end
+j=k(:,1);
+l=k(:,2);
+m=k(:,3);
+meanx=mean(j);
+meany=mean(l);
+meanz=mean(m);

@@ -1,0 +1,86 @@
+#recon-all
+tcsh
+setenv SUBJECTS_DIR /home/mengli/MeiqiNiu/recon-all
+foreach i (a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 a14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 c1 c2 c3 c4 c5 c6 c7 c8 c9 c10 c11 c12 c13 c14)
+   recon-all -s $i -i $SUBJECTS_DIR/$i.nii -all 
+end
+
+
+#qcache
+tcsh
+setenv SUBJECTS_DIR /home/mengli/MeiqiNiu/recon-all/1
+foreach i (21 22 23)
+   recon-all -s $i -qcache
+end
+
+
+#fengejieguo
+tkmedit 1 brainmask.mgz -surfs -aseg
+tksurfer 1 lh inflated
+
+
+#preproc
+mris_preproc --fsgd /home/mengli/MeiqiNiu/huaqiao/three-group/design/three-group2.fsgd --cache-in thickness.fwhm10.fsaverage --target fsaverage --hemi lh --out lh.group.thickness.10.mgh
+
+mris_preproc --fsgd /home/mengli/MeiqiNiu/huaqiao/three-group/design/three-group2.fsgd --cache-in thickness.fwhm10.fsaverage --target fsaverage --hemi rh --out rh.group.thickness.10.mgh 
+
+
+#glmfit
+mri_glmfit --y lh.group.thickness.10.mgh --fsgd /home/mengli/MeiqiNiu/huaqiao/three-group/design/three-group2.fsgd dods --C /home/mengli/MeiqiNiu/huaqiao/three-group/design/MDD-NC.mtx --C /home/mengli/MeiqiNiu/huaqiao/three-group/design/BD-NC.mtx --C /home/mengli/MeiqiNiu/huaqiao/three-group/design/group.effect.mtx --surf fsaverage lh --cortex --glmdir lh.group.glmdir
+
+mri_glmfit --y rh.group.thickness.10.mgh --fsgd /home/mengli/MeiqiNiu/huaqiao/three-group/design/three-group2.fsgd dods --C /home/mengli/MeiqiNiu/huaqiao/three-group/design/MDD-NC.mtx --C /home/mengli/MeiqiNiu/huaqiao/three-group/design/BD-NC.mtx --C /home/mengli/MeiqiNiu/huaqiao/three-group/design/group.effect.mtx --surf fsaverage rh --cortex --glmdir rh.group.glmdir
+
+
+#kanjieguo
+tksurfer fsaverage lh inflated -annot aparc.annot -fthresh2 -overlay /home/niumeiqi/niumeiqi/20150412/threegroup/results/lh.group.glmdir/MDD-NC/mc-z.abs.sig.cluster.mgh
+tksurfer fsaverage rh inflated -annot aparc.annot -fthresh2 -overlay /home/niumeiqi/niumeiqi/20150412/threegroup/results/rh.group.glmdir/MDD-NC/mc-z.abs.sig.cluster.mgh
+
+
+#jiaozheng
+mri_glmfit-sim --glmdir '/home/niumeiqi/niumeiqi/20150412/threegroup/results/lh.group.glmdir' --sim mc-z 5000 1.3 mc-z.abs --sim-sign abs --overwrite
+mri_glmfit-sim --glmdir '/home/niumeiqi/niumeiqi/20150412/threegroup/results/lh.group.glmdir' --sim mc-z 5000 2 mc-z.abs --sim-sign abs --overwrite
+mri_glmfit-sim --glmdir '/home/niumeiqi/niumeiqi/20150412/threegroup/results/rh.group.glmdir' --sim mc-z 5000 1.3 mc-z.abs --sim-sign abs --overwrite
+mri_glmfit-sim --glmdir '/home/niumeiqi/niumeiqi/20150412/threegroup/results/rh.group.glmdir' --sim mc-z 5000 2 mc-z.abs --sim-sign abs --overwrite
+
+
+#kanjiaozhengjieguo
+tksurfer fsaverage lh inflated -annot '/home/mengli/group_analysis/MDD-BD-NC-results/lh.group.glmdir/mc'-\z.abs4.sig.ocn.annot -fthresh 2 -curv -gray
+
+tksurfer fsaverage rh inflated -annot /home/niumeiqi/niumeiqi/20150412/threegroup/results/rh.group.glmdir/MDD-NC/mc-z.abs.sig.ocn.annot -fthresh 2 -curv -gray
+或改上一个看结果也可
+
+保存cluster
+tksurfer fsaverage lh inflated -annot /home/niumeiqi/niumeiqi/20150412/threegroup/results/lh.group.glmdir/BD-NC/mc-z.abs.sig.ocn.annot -fthresh 2 -curv -gray
+tksurfer fsaverage rh inflated -annot /home/niumeiqi/niumeiqi/20150412/threegroup/results/rh.group.glmdir/BD-NC/mc-z.abs.sig.ocn.annot -fthresh 2 -curv -gray
+
+将选中的cluster投射到每个被试上
+foreach i (m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15)
+mri_label2label --srcsubject subject --srclabel /home/niumeiqi/niumeiqi/20150412/threegroup/subject/label/8.label --trgsubject $i --trglabel /home/niumeiqi/niumeiqi/20150412/threegroup/$i/label/8.label --regmethod surface --hemi lh
+end
+
+foreach i (m2 m3)
+mri_label2label --srcsubject subject --srclabel /home/niumeiqi/niumeiqi/20150412/threegroup/subject/label/threegroup.label --trgsubject $i --trglabel /home/niumeiqi/niumeiqi/20150412/threegroup/$i/label/1.label --regmethod surface --hemi rh
+end
+
+计算区域厚度
+foreach i (m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15)
+mris_anatomical_stats -l 8.label -t lh.thickness -b -f /home/niumeiqi/niumeiqi/20150412/threegroup/$i/stats/8.stats $i lh
+end
+
+foreach i (m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15)
+mris_anatomical_stats -l 5.label -t lh.thickness -b -f /home/niumeiqi/niumeiqi/20150412/threegroup/$i/stats/5.stats $i rh
+
+总结成表格前可能需要改名
+foreach i (m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15)
+mv /home/niumeiqi/niumeiqi/20150412/threegroup/$i/stats/3.stats /home/niumeiqi/niumeiqi/20150412/threegroup/$i/stats/lh.3.stats
+end
+
+foreach i (m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15)
+mv /home/niumeiqi/niumeiqi/20150412/threegroup/$i/stats/2.stats /home/niumeiqi/niumeiqi/20150412/threegroup/$i/stats/rh.2.stats
+end
+
+总结成表格
+表面积
+aparcstats2table --hemi rh --subjects m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 --meas thickness --parc 5 --tablefile 5.label.txt 
+体积
+aparcstats2table --hemi lh --subjects m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 --meas volume --parc 8 --tablefile 8.label.txt 

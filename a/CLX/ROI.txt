@@ -1,0 +1,88 @@
+tkmedit b1 orig.mgz -aux aparc+aseg.mgz -seg aparc+aseg.mgz /home/mengli/MeiqiNiu/freesurfer/FreeSurferColorLUT.txt()
+
+tksurfer b1 lh inflated -annot aparc.annot()
+
+less /home/mengli/MeiqiNiu/freesurfer/FreeSurferColorLUT.txt
+
+
+
+#Desikan atlas
+aparcstats2table --hemi lh --subjects m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 --meas thickness --parc aparc --tablefile lh.aparc.thickness.txt 
+aparcstats2table --hemi lh --subjects m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 --meas volume --parc aparc --tablefile lh.aparc.volume.txt 
+aparcstats2table --hemi lh --subjects m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 --meas area --parc aparc --tablefile lh.aparc.area.txt
+aparcstats2table --hemi lh --subjects m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 --meas meancurv --parc aparc --tablefile lh.aparc.meancurv.txt
+
+aparcstats2table --hemi rh --subjects m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 --meas thickness --parc aparc --tablefile rh.aparc.thickness.txt
+aparcstats2table --hemi rh --subjects m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 --meas volume --parc aparc --tablefile rh.aparc.volume.txt 
+aparcstats2table --hemi rh --subjects m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 --meas area --parc aparc --tablefile rh.aparc.area.txt
+aparcstats2table --hemi rh --subjects m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 --meas meancurv --parc aparc --tablefile rh.aparc.meancurv.txt
+
+#Destrieux atlas
+aparcstats2table --hemi lh --subjects m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 --meas thickness --parc aparc.a2009s --tablefile lh.aparc.a2009.thickness.txt
+aparcstats2table --hemi lh --subjects m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 --meas volume --parc aparc.a2009s --tablefile lh.aparc.a2009.volume.txt
+aparcstats2table --hemi lh --subjects m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 --meas area --parc aparc.a2009s --tablefile lh.aparc.a2009.area.txt
+aparcstats2table --hemi lh --subjects m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 --meas meancurv --parc aparc.a2009s --tablefile lh.aparc.a2009.meancurv.txt
+
+aparcstats2table --hemi rh --subjects m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 --meas thickness --parc aparc.a2009s --tablefile rh.aparc.a2009.thickness.txt
+aparcstats2table --hemi rh --subjects m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 --meas volume --parc aparc.a2009s --tablefile rh.aparc.a2009.volume.txt
+aparcstats2table --hemi rh --subjects m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 --meas area --parc aparc.a2009s --tablefile rh.aparc.a2009.area.txt
+aparcstats2table --hemi rh --subjects m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 --meas meancurv --parc aparc.a2009s --tablefile rh.aparc.a2009.meancurv.txt
+
+#Volume
+asegstats2table --subjects m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 m13 m14 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 --meas volume --stats aseg.stats --tablefile volume.txt
+
+
+
+
+tksurfer fsaverage lh inflated -annot aparc.annot -fthresh2 -overlay /home/mengli/lh.ROI.group.glmdir/BD-NC/sig.mgh
+
+#GLM Analysis
+mri_glmfit --table /home/niumeiqi/niumeiqi/20150412/threegroup/ROI/lh.aparc.a2009.area.txt --fsgd /home/niumeiqi/niumeiqi/20150412/threegroup/design/g3v0.20150412.fsgd dods --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/group.effect.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/BD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-BD.mtx --glmdir lh.aparc.a2009.area.glmdir
+
+mri_glmfit --table /home/niumeiqi/niumeiqi/20150412/threegroup/ROI/rh.aparc.a2009.area.txt --fsgd /home/niumeiqi/niumeiqi/20150412/threegroup/design/g3v0.20150412.fsgd dods --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/group.effect.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/BD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-BD.mtx --glmdir rh.aparc.a2009.area.glmdir
+
+mri_glmfit --table /home/niumeiqi/niumeiqi/20150412/threegroup/ROI/lh.aparc.a2009.meancurv.txt --fsgd /home/niumeiqi/niumeiqi/20150412/threegroup/design/g3v0.20150412.fsgd dods --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/group.effect.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/BD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-BD.mtx --glmdir lh.aparc.a2009.meancurv.glmdir
+
+mri_glmfit --table /home/niumeiqi/niumeiqi/20150412/threegroup/ROI/rh.aparc.a2009.meancurv.txt --fsgd /home/niumeiqi/niumeiqi/20150412/threegroup/design/g3v0.20150412.fsgd dods --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/group.effect.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/BD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-BD.mtx --glmdir rh.aparc.a2009.meancurv.glmdir
+
+mri_glmfit --table /home/niumeiqi/niumeiqi/20150412/threegroup/ROI/lh.aparc.a2009.thickness.txt --fsgd /home/niumeiqi/niumeiqi/20150412/threegroup/design/g3v0.20150412.fsgd dods --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/group.effect.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/BD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-BD.mtx --glmdir lh.aparc.a2009.thickness.glmdir
+
+mri_glmfit --table /home/niumeiqi/niumeiqi/20150412/threegroup/ROI/rh.aparc.a2009.thickness.txt --fsgd /home/niumeiqi/niumeiqi/20150412/threegroup/design/g3v0.20150412.fsgd dods --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/group.effect.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/BD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-BD.mtx --glmdir rh.aparc.a2009.thickness.glmdir
+
+mri_glmfit --table /home/niumeiqi/niumeiqi/20150412/threegroup/ROI/lh.aparc.a2009.volume.txt --fsgd /home/niumeiqi/niumeiqi/20150412/threegroup/design/g3v0.20150412.fsgd dods --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/group.effect.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/BD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-BD.mtx --glmdir lh.aparc.a2009.volume.glmdir
+
+mri_glmfit --table /home/niumeiqi/niumeiqi/20150412/threegroup/ROI/rh.aparc.a2009.volume.txt --fsgd /home/niumeiqi/niumeiqi/20150412/threegroup/design/g3v0.20150412.fsgd dods --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/group.effect.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/BD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-BD.mtx --glmdir rh.aparc.a2009.volume.glmdir
+
+mri_glmfit --table /home/niumeiqi/niumeiqi/20150412/threegroup/ROI/lh.aparc.area.txt --fsgd /home/niumeiqi/niumeiqi/20150412/threegroup/design/g3v0.20150412.fsgd dods --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/group.effect.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/BD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-BD.mtx --glmdir lh.aparc.area.glmdir
+
+mri_glmfit --table /home/niumeiqi/niumeiqi/20150412/threegroup/ROI/rh.aparc.area.txt --fsgd /home/niumeiqi/niumeiqi/20150412/threegroup/design/g3v0.20150412.fsgd dods --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/group.effect.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/BD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-BD.mtx --glmdir rh.aparc.area.glmdir
+
+mri_glmfit --table /home/niumeiqi/niumeiqi/20150412/threegroup/ROI/lh.aparc.meancurv.txt --fsgd /home/niumeiqi/niumeiqi/20150412/threegroup/design/g3v0.20150412.fsgd dods --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/group.effect.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/BD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-BD.mtx --glmdir lh.aparc.meancurv.glmdir
+
+mri_glmfit --table /home/niumeiqi/niumeiqi/20150412/threegroup/ROI/rh.aparc.meancurv.txt --fsgd /home/niumeiqi/niumeiqi/20150412/threegroup/design/g3v0.20150412.fsgd dods --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/group.effect.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/BD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-BD.mtx --glmdir rh.aparc.meancurv.glmdir
+
+mri_glmfit --table /home/niumeiqi/niumeiqi/20150412/threegroup/ROI/lh.aparc.thickness.txt --fsgd /home/niumeiqi/niumeiqi/20150412/threegroup/design/g3v0.20150412.fsgd dods --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/group.effect.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/BD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-BD.mtx --glmdir lh.aparc.thickness.glmdir
+
+mri_glmfit --table /home/niumeiqi/niumeiqi/20150412/threegroup/ROI/rh.aparc.thickness.txt --fsgd /home/niumeiqi/niumeiqi/20150412/threegroup/design/g3v0.20150412.fsgd dods --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/group.effect.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/BD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-BD.mtx --glmdir rh.aparc.thickness.glmdir
+
+mri_glmfit --table /home/niumeiqi/niumeiqi/20150412/threegroup/ROI/lh.aparc.volume.txt --fsgd /home/niumeiqi/niumeiqi/20150412/threegroup/design/g3v0.20150412.fsgd dods --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/group.effect.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/BD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-BD.mtx --glmdir lh.aparc.volume.glmdir
+
+mri_glmfit --table /home/niumeiqi/niumeiqi/20150412/threegroup/ROI/rh.aparc.volume.txt --fsgd /home/niumeiqi/niumeiqi/20150412/threegroup/design/g3v0.20150412.fsgd dods --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/group.effect.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/BD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-BD.mtx --glmdir rh.aparc.volume.glmdir
+
+mri_glmfit --table /home/niumeiqi/niumeiqi/20150412/threegroup/ROI/volume.txt --fsgd /home/niumeiqi/niumeiqi/20150412/threegroup/design/g3v0.20150412.fsgd dods --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/group.effect.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/BD-NC.mtx --C /home/niumeiqi/niumeiqi/20150412/threegroup/design/MDD-BD.mtx --glmdir volume.glmdir
+
+
+
+
+
+#kanjieguo
+tksurfer fsaverage lh inflated -annot aparc.annot -fthresh2 -overlay /home/niumeiqi/niumeiqi/20150412/threegroup/ROI/ROI-GLM-result/lh.aparc.a2009.area.glmdir/group.effect/sig.mgh
+tksurfer fsaverage rh inflated -annot aparc.annot -fthresh2 -overlay /home/mengli/rh.ROI.group.glmdir/BD-NC/sig.mgh
+
+
+
+#cunchubiaoge
+gnumeric lh.aparc.area.table
+gnumeric rh.aparc.area.table
+gnumeric lh.aparc.a2009.thickness.table
+gnumeric rh.aparc.a2009.thickness.table
